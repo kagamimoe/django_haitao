@@ -63,7 +63,7 @@ def trs_time(time_list):
 
 class Recorder:
 	def __init__(self):
-		self.conn = sqlite3.connect('/Users/kagami/Desktop/djcode/mysite/db.sqlite3', check_same_thread = False)
+		self.conn = sqlite3.connect('/Users/kagami/Desktop/django_haitao/mysite/db.sqlite3', check_same_thread = False)
 		self.cur = self.conn.cursor()
 
 	def save_item(self, title, url, datetime):
