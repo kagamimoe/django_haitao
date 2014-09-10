@@ -104,7 +104,7 @@ if __name__ == '__main__':
 	total_link_list = []
 	total_time_list = []
 	page = 1
-	while page < 4:
+	while page < 8:
 		url = 'http://haitao.smzdm.com/p'
 		url = url + str(page)
 		# print get_html(url)
@@ -118,24 +118,24 @@ if __name__ == '__main__':
 		total_time_list = total_time_list + time_list
 		print '第%d页抓取完毕' % page
 		page = page + 1
-	f = open('1.txt','w')
+	# f = open('1.txt','w')
 	recorder = Recorder()
 	t_list = trs_list(total_list)
 	trs_time_list = trs_time(total_time_list)
 	del t_list[0]
-	for i in range(len(t_list)):
-		# print total_link_list[i]
-		f.write(t_list[i] + '\n')
-		f.write(total_link_list[i] + '\n')
-		f.write(total_time_list[i] + '\n')
-	f.close()
-
-	print 'It has ' + str(len(t_list)) + ' titles'
-	print 'It has ' + str(len(total_link_list)) + ' urls'
-	print 'It has ' + str(len(total_time_list)) + ' times'
-
 	# for i in range(len(t_list)):
-		# recorder.save_item(t_list[i], total_link_list[i], trs_time_list[i])
+	# 	# print total_link_list[i]
+	# 	f.write(t_list[i] + '\n')
+	# 	f.write(total_link_list[i] + '\n')
+	# 	f.write(total_time_list[i] + '\n')
+	# f.close()
 
-	# print "已存入数据库"
+	# print 'It has ' + str(len(t_list)) + ' titles'
+	# print 'It has ' + str(len(total_link_list)) + ' urls'
+	# print 'It has ' + str(len(total_time_list)) + ' times'
+
+	for i in range(len(t_list)):
+		recorder.save_item(t_list[i], total_link_list[i], trs_time_list[i])
+
+	print "已存入数据库"
 	sys.exit(1)
