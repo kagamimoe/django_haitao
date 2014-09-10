@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 	{% block content %}
 		{% for post in posts %}
+		<div class="item">
 		<h2> {{ post.title }}</h2>
 		<a href="{{ post.link }}"> 链接 ←戳  </a>
-		<span> {{ post.pub_date | date:" n-d "}} , {{ post.pub_date | time:" H:i "}}</span>
+		<span style="padding-right:0px; float:right;"> {{ post.pub_date | date:" n-d "}} , {{ post.pub_date | time:" H:i "}}</span>
+		</div>
 		{% endfor %}
 		<br>
 		  <ul class="pagination">

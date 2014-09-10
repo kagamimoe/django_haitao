@@ -19,14 +19,14 @@ def get_html(url):
 	return html
 
 def get_title(html):
-	r = r';">(.*?)</s'
+	r = r';">(.*?)</sp'
 	titler = re.compile(r)
 	title_list = titler.findall(html)
 	return title_list
 
 def get_link(html):
 	# r = r'y">\s*?<a href="(http://www\.smzdm\.com/URL/.{18})'
-	r = r'y">\s*?<a href="(http://.*?)"'
+	r = r'y">\s*?<a href="(htt.*?)"'
 	linkr = re.compile(r)
 	link_list = linkr.findall(html)
 	return link_list
@@ -100,53 +100,42 @@ class Recorder:
 
 
 if __name__ == '__main__':
-	try:
-		total_list = []
-		total_link_list = []
-		total_time_list = []
-		page = 1
-		while True:
-			url = 'http://haitao.smzdm.com/p'
-			url = url + str(page)
-			# print get_html(url)
-			# print get_title(get_html(url))
-			# time.sleep(5)
-			html = get_html(url)
-			title_list = get_title(html)
-			time_list = get_time(html)
-			total_list =  total_list + title_list
-			total_link_list = total_link_list + get_link(html)
-			total_time_list = total_time_list + time_list
-			print '第%d页抓取完毕' % page
-			page = page + 1
-	except KeyboardInterrupt, e:
-		# f = open('1.txt','w')
-		recorder = Recorder()
-		t_list = trs_list(total_list)
-		trs_time_list = trs_time(total_time_list)
-		del t_list[0]
-		# for i in range(len(t_list)):
-			# print total_link_list[i]
-			# f.write(t_list[i] + '\n')
-			# f.write(total_link_list[i] + '\n')
-			# f.write(total_time_list[i] + '\n')
-		# f.close()
+	total_list = []
+	total_link_list = []
+	total_time_list = []
+	page = 1
+	while page < 4:
+		url = 'http://haitao.smzdm.com/p'
+		url = url + str(page)
+		# print get_html(url)
+		# print get_title(get_html(url))
+		# time.sleep(5)
+		html = get_html(url)
+		title_list = get_title(html)
+		time_list = get_time(html)
+		total_list =  total_list + title_list
+		total_link_list = total_link_list + get_link(html)
+		total_time_list = total_time_list + time_list
+		print '第%d页抓取完毕' % page
+		page = page + 1
+	f = open('1.txt','w')
+	recorder = Recorder()
+	t_list = trs_list(total_list)
+	trs_time_list = trs_time(total_time_list)
+	del t_list[0]
+	for i in range(len(t_list)):
+		# print total_link_list[i]
+		f.write(t_list[i] + '\n')
+		f.write(total_link_list[i] + '\n')
+		f.write(total_time_list[i] + '\n')
+	f.close()
 
-		# print 'It has ' + str(len(t_list)) + ' titles'
-		# print 'It has ' + str(len(total_link_list)) + ' urls'
-		# print 'It has ' + str(len(total_time_list)) + ' times'
+	print 'It has ' + str(len(t_list)) + ' titles'
+	print 'It has ' + str(len(total_link_list)) + ' urls'
+	print 'It has ' + str(len(total_time_list)) + ' times'
 
-		for i in range(len(t_list)):
-			recorder.save_item(t_list[i], total_link_list[i], trs_time_list[i])
+	# for i in range(len(t_list)):
+		# recorder.save_item(t_list[i], total_link_list[i], trs_time_list[i])
 
-		print "Ctrl-c pressed ..."
-		sys.exit(1)
-	# url = url + str(1)
-	# print len(get_link(get_html(url).strip()))
-	# print len(trs_list(get_title(get_html(url))))
-	# url = url + str(2)
-	# print len(get_link(get_html(url).strip()))
-	# for i in trs_list(get_title(get_html(url))):
-	# 	print i
-
-
+	# print "已存入数据库"
+	sys.exit(1)
