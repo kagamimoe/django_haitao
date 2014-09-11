@@ -23,6 +23,6 @@ modify the directory of the sql your computer.
 
 run the search_haitao.py to prase the data.
 
-#Step 4.
+#Step 5.
 
  press 'python manage.py runserver'
