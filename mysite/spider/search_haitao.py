@@ -18,6 +18,7 @@ def get_html(url):
 	html = my_response.read()
 	return html
 
+
 def get_title(html):
 	r = r';">(.*?)</sp'
 	titler = re.compile(r)
@@ -122,17 +123,26 @@ if __name__ == '__main__':
 	recorder = Recorder()
 	t_list = trs_list(total_list)
 	trs_time_list = trs_time(total_time_list)
-	del t_list[0]
+	# del t_list[0]
 	# for i in range(len(t_list)):
-	# 	# print total_link_list[i]
+	# 	print total_link_list[i]
 	# 	f.write(t_list[i] + '\n')
 	# 	f.write(total_link_list[i] + '\n')
 	# 	f.write(total_time_list[i] + '\n')
 	# f.close()
 
+	# for i in total_list:
+	# 	print i
+	#
+	# print '------------------'
+	#
+	# for i in t_list:
+	# 	print i
+	#
 	# print 'It has ' + str(len(t_list)) + ' titles'
-	# print 'It has ' + str(len(total_link_list)) + ' urls'
-	# print 'It has ' + str(len(total_time_list)) + ' times'
+	# print 'total_list by re' + str(len(total_list)) + 'titles'
+	# # print 'It has ' + str(len(total_link_list)) + ' urls'
+	# # print 'It has ' + str(len(total_time_list)) + ' times'
 
 	for i in range(len(t_list)):
 		recorder.save_item(t_list[i], total_link_list[i], trs_time_list[i])
